@@ -1,6 +1,27 @@
-import React from 'react'
-import { View, Text, Image, StyleSheet, ImageBackground, TouchableOpacity, Alert, Button, TextInput } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import {
+    View,
+    Text,
+    Image, StyleSheet,
+    ImageBackground,
+    TouchableOpacity,
+    Alert,
+    Button,
+    TextInput,
+    Keyboard,
+    KeyboardAvoidingView,
+} from 'react-native'
 const Login = () => {
+    const [keyboardIsshown, setKeyboardIsshown] = useState(false)
+    useEffect(() => {
+        Keyboard.addListener('keyboardDidShow', () =>
+            setKeyboardIsshown(true)
+        )
+        Keyboard.addListener('keyboardDidHide', () =>
+            setKeyboardIsshown(false)
+        )
+    })
+
     return <View style={{
         backgroundColor: 'white',
         flex: 100,
@@ -48,6 +69,12 @@ const Login = () => {
                 placeholderTextColor={'rgba(0,0,0,0.5)'}
                 fontSize={18}
             />
+            <View style={{
+                marginTop: 10,
+                height: 1,
+                borderWidth: 1,
+                width: '100%'
+            }}></View>
         </View>
         <View style={{
             marginHorizontal: 15,
@@ -65,10 +92,16 @@ const Login = () => {
                 placeholder={'Enter your password'}
                 placeholderTextColor={'rgba(0,0,0,0.5)'}
                 fontSize={18}
-                
+
             />
+            <View style={{
+                marginTop: 10,
+                height: 1,
+                borderWidth: 1,
+                width: '100%'
+            }}></View>
         </View>
-        <TouchableOpacity
+        {!keyboardIsshown && <TouchableOpacity
             style={{
                 flex: 6,
                 backgroundColor: 'aqua',
@@ -86,7 +119,8 @@ const Login = () => {
                     padding: 10,
                 }}
             >LOGIN</Text>
-        </TouchableOpacity>
+
+        </TouchableOpacity>}
         <TouchableOpacity
             style={{
                 flex: 8,
@@ -138,18 +172,18 @@ const Login = () => {
             <View style={{
                 flex: 15,
                 flexDirection: 'row',
-                justifyContent:'space-around',
-                marginHorizontal: 140,
+                justifyContent: 'space-around',
+                marginHorizontal: 120,
             }}>
                 <Image source={require('../assets/facebook.png')}
                     style={{
-                        height: 40,
-                        width: 40,
+                        height: 50,
+                        width: 50,
                     }}
                 />
-                <Image source={require('../assets/youtube.png')}
+                <Image source={require('../assets/gg.png')}
                     style={{
-                        height: 40,
+                        height: 50,
                         width: 50,
                     }}
                 />
