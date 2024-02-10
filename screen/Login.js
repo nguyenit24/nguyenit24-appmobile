@@ -59,12 +59,13 @@ const Login = () => {
             }}>Password:</Text>
             <TextInput
                 style={{
-                    color: 'black'
+                    color: 'black',
                 }}
                 secureTextEntry={true}
                 placeholder={'Enter your password'}
                 placeholderTextColor={'rgba(0,0,0,0.5)'}
                 fontSize={18}
+                
             />
         </View>
         <TouchableOpacity
@@ -106,23 +107,52 @@ const Login = () => {
             flex: 25,
         }}>
             <View style={{
+                flex: 10,
                 flexDirection: 'row',
                 justifyContent: 'space-around',
-                alignItems: 'center'
+                alignItems: 'center',
+                marginHorizontal: 30,
             }}>
                 <View style={{
-                    // flex: 1,
+                    flex: 1,
                     height: 1,
                     borderWidth: 1,
+                    width: '50%',
                 }}></View>
-                <Text style={{
-                    // flex: 1,
-                }}>Use other methos?</Text>
                 <View style={{
-                    // flex: 1,
+                    flex: 1,
+                    fontSize: 15,
+                }}>
+                    <Text style={{
+                        alignSelf: 'center',
+                        color: 'orange'
+                    }}>Use other methos?</Text>
+                </View>
+                <View style={{
+                    flex: 1,
                     height: 1,
                     borderWidth: 1,
+                    width: '50%'
                 }}></View>
+            </View>
+            <View style={{
+                flex: 15,
+                flexDirection: 'row',
+                justifyContent:'space-around',
+                marginHorizontal: 140,
+            }}>
+                <Image source={require('../assets/facebook.png')}
+                    style={{
+                        height: 40,
+                        width: 40,
+                    }}
+                />
+                <Image source={require('../assets/youtube.png')}
+                    style={{
+                        height: 40,
+                        width: 50,
+                    }}
+                />
             </View>
         </View>
     </View>
