@@ -12,6 +12,9 @@ import {
     KeyboardAvoidingView,
 } from 'react-native'
 const Login = () => {
+    const notify = () => {
+        Alert.alert('Thông báo tài khoản',`Email: ${email}\nPassword: ${password}`)
+    }
     const [keyboardIsshown, setKeyboardIsshown] = useState(false)
     useEffect(() => {
         Keyboard.addListener('keyboardDidShow', () =>
@@ -21,7 +24,10 @@ const Login = () => {
             setKeyboardIsshown(false)
         )
     })
-
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [erroremail, setErrorEmail] = useState('')
+    const [errorpassword, setErrorPassword] = useState('')
     return <View style={{
         backgroundColor: 'white',
         flex: 100,
@@ -68,12 +74,16 @@ const Login = () => {
                 placeholder={'Example@gmail.com'}
                 placeholderTextColor={'rgba(0,0,0,0.5)'}
                 fontSize={18}
+                onChangeText={(text) => 
+                    setEmail(text)
+                }
             />
             <View style={{
-                marginTop: 10,
+                marginTop: 5,
                 height: 1,
                 borderWidth: 1,
-                width: '100%'
+                width: '100%',
+                borderColor: 'rgba(0,0,0,0.5)',
             }}></View>
         </View>
         <View style={{
@@ -92,103 +102,110 @@ const Login = () => {
                 placeholder={'Enter your password'}
                 placeholderTextColor={'rgba(0,0,0,0.5)'}
                 fontSize={18}
-
+                onChangeText={(text) => 
+                    setPassword(text)
+                }
             />
             <View style={{
-                marginTop: 10,
+                borderColor: 'rgba(0,0,0,0.5)',
+                marginTop: 5,
                 height: 1,
                 borderWidth: 1,
                 width: '100%'
             }}></View>
         </View>
-        {!keyboardIsshown && <TouchableOpacity
-            style={{
-                flex: 6,
-                backgroundColor: 'aqua',
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderRadius: 20,
-                width: '50%',
-
-                alignSelf: 'center'
-            }}
-        >
-            <Text
-                style={{
-                    fontSize: 20,
-                    padding: 10,
-                }}
-            >LOGIN</Text>
-
-        </TouchableOpacity>}
-        <TouchableOpacity
-            style={{
-                flex: 8,
-                justifyContent: 'center',
-                borderRadius: 20,
-                alignSelf: 'center'
-            }}
-        >
-            <Text
-                style={{
-                    fontSize: 17,
-                    padding: 10,
-                    color: 'red'
-                }}
-            >New user? Register now!</Text>
-        </TouchableOpacity>
-        <View style={{
-            flex: 25,
+        {!keyboardIsshown && <View style={{
+            flex: 40,
         }}>
+            <TouchableOpacity
+                style={{
+                    flex: 6,
+                    backgroundColor: 'aqua',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    borderRadius: 20,
+                    width: '50%',
+
+                    alignSelf: 'center'
+                }}
+                onPress={() => notify()}
+            >
+                <Text
+                    style={{
+                        fontSize: 20,
+                        padding: 10,
+                    }}
+                >LOGIN</Text>
+
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={{
+                    flex: 8,
+                    justifyContent: 'center',
+                    alignSelf: 'center'
+                }}
+            >
+                <Text
+                    style={{
+                        fontSize: 17,
+                        padding: 10,
+                        color: 'red'
+                    }}
+                >New user?  Register now!</Text>
+            </TouchableOpacity>
             <View style={{
-                flex: 10,
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                alignItems: 'center',
-                marginHorizontal: 30,
+                flex: 25,
             }}>
                 <View style={{
-                    flex: 1,
-                    height: 1,
-                    borderWidth: 1,
-                    width: '50%',
-                }}></View>
-                <View style={{
-                    flex: 1,
-                    fontSize: 15,
+                    flex: 10,
+                    flexDirection: 'row',
+                    justifyContent: 'space-around',
+                    alignItems: 'center',
+                    marginHorizontal: 30,
                 }}>
-                    <Text style={{
-                        alignSelf: 'center',
-                        color: 'orange'
-                    }}>Use other methos?</Text>
+                    <View style={{
+                        flex: 1,
+                        height: 1,
+                        borderWidth: 1,
+                        width: '50%',
+                    }}></View>
+                    <View style={{
+                        flex: 1,
+                        fontSize: 15,
+                    }}>
+                        <Text style={{
+                            alignSelf: 'center',
+                            color: 'orange'
+                        }}>Use other methos?</Text>
+                    </View>
+                    <View style={{
+                        flex: 1,
+                        height: 1,
+                        borderWidth: 1,
+                        width: '50%'
+                    }}></View>
                 </View>
                 <View style={{
-                    flex: 1,
-                    height: 1,
-                    borderWidth: 1,
-                    width: '50%'
-                }}></View>
+                    flex: 15,
+                    flexDirection: 'row',
+                    justifyContent: 'space-around',
+                    marginHorizontal: 120,
+                }}>
+                    <Image source={require('../assets/facebook.png')}
+                        style={{
+                            height: 50,
+                            width: 50,
+                        }}
+                    />
+                    <Image source={require('../assets/gg.png')}
+                        style={{
+                            height: 50,
+                            width: 50,
+                        }}
+                    />
+                </View>
             </View>
-            <View style={{
-                flex: 15,
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                marginHorizontal: 120,
-            }}>
-                <Image source={require('../assets/facebook.png')}
-                    style={{
-                        height: 50,
-                        width: 50,
-                    }}
-                />
-                <Image source={require('../assets/gg.png')}
-                    style={{
-                        height: 50,
-                        width: 50,
-                    }}
-                />
-            </View>
-        </View>
+        </View>}
     </View>
 }
 export default Login
