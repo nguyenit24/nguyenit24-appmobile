@@ -12,6 +12,9 @@ import {
     KeyboardAvoidingView,
 } from 'react-native'
 const Login = () => {
+    let isEmail = (email) => {
+        return /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/.test(email) || /w+([-+.]w+)*@w+([-.]w+)*.w+([-.]w+)*/.test(email);
+    }
     const notify = () => {
         Alert.alert('Thông báo tài khoản',`Email: ${email}\nPassword: ${password}`)
     }
@@ -26,8 +29,9 @@ const Login = () => {
     })
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [erroremail, setErrorEmail] = useState('')
-    const [errorpassword, setErrorPassword] = useState('')
+    const [erroremail, setErrorEmail] = useState(false)
+    const [errorpassword, setErrorPassword] = useState(false)
+    const logindisable = isEmail(email) && password.length > 3  
     return <View style={{
         backgroundColor: 'white',
         flex: 100,
@@ -58,7 +62,6 @@ const Login = () => {
                 }} />
 
         </View>
-        {/* </ImageBackground> */}
         <View style={{
             marginHorizontal: 15,
             flex: 15,
@@ -75,7 +78,10 @@ const Login = () => {
                 placeholderTextColor={'rgba(0,0,0,0.5)'}
                 fontSize={18}
                 onChangeText={(text) => 
-                    setEmail(text)
+                    {
+                        setEmail(text)
+                        setErrorEmail(isEmail(text) == true ? false : true)
+                    }
                 }
             />
             <View style={{
@@ -85,6 +91,11 @@ const Login = () => {
                 width: '100%',
                 borderColor: 'rgba(0,0,0,0.5)',
             }}></View>
+            {erroremail == true && <View>
+                <Text style={{
+                    color: 'red',
+                }}>Email format is wrong</Text>
+            </View>}
         </View>
         <View style={{
             marginHorizontal: 15,
@@ -103,7 +114,10 @@ const Login = () => {
                 placeholderTextColor={'rgba(0,0,0,0.5)'}
                 fontSize={18}
                 onChangeText={(text) => 
-                    setPassword(text)
+                    {
+                        setPassword(text)
+                        setErrorPassword(text.length > 3 ? false : true)    
+                    }
                 }
             />
             <View style={{
@@ -113,19 +127,24 @@ const Login = () => {
                 borderWidth: 1,
                 width: '100%'
             }}></View>
+           {errorpassword == true && <View>
+                <Text style={{
+                    color: 'red',
+                }}>Password must have at least 4 characters</Text>
+            </View>}
         </View>
         {!keyboardIsshown && <View style={{
             flex: 40,
         }}>
             <TouchableOpacity
+                disabled={logindisable == false}
                 style={{
                     flex: 6,
-                    backgroundColor: 'aqua',
+                    backgroundColor: logindisable == false ? 'rgba(0,0,0,0.2)' : 'aqua',
                     justifyContent: 'center',
                     alignItems: 'center',
                     borderRadius: 20,
                     width: '50%',
-
                     alignSelf: 'center'
                 }}
                 onPress={() => notify()}
@@ -209,3 +228,4 @@ const Login = () => {
     </View>
 }
 export default Login
+// huynh duy nguyen
