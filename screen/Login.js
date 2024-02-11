@@ -143,7 +143,7 @@ const Login = () => {
                     backgroundColor: logindisable == false ? 'rgba(0,0,0,0.2)' : 'aqua',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    borderRadius: 20,
+                    borderRadius: 2,
                     width: '50%',
                     alignSelf: 'center'
                 }}
