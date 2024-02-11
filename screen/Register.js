@@ -31,7 +31,8 @@ const Register = () => {
     const [password, setPassword] = useState('')
     const [erroremail, setErrorEmail] = useState(false)
     const [errorpassword, setErrorPassword] = useState(false)
-    const logindisable = isEmail(email) && password.length > 3
+    const [repassword, setRePassword] = useState('')
+    const redisable = isEmail(email) && password.length > 3 && repassword == password
     return <View style={{
         backgroundColor: 'orange',
         flex: 100,
@@ -62,8 +63,11 @@ const Register = () => {
 
         </View>
         <View style={{
-            flex: 45,
-            backgroundColor: 'white'
+            flex: 48,
+            backgroundColor: 'white',
+            marginHorizontal: 10,
+            paddingTop: 10,
+            borderRadius: 15,
         }}>
             <View style={{
                 marginHorizontal: 15,
@@ -171,20 +175,27 @@ const Register = () => {
             </View>
         </View>
         <TouchableOpacity
+            disabled={redisable == false}
             style={{
-                flex: 8,
+                flex: 5,
                 justifyContent: 'center',
                 borderWidth: 1,
-                backgroundColor: 'purple'
+                backgroundColor: redisable == false ? 'rbga(0,0,0,0.4)' : 'purple',
+                alignItems: 'center',
+                marginHorizontal: 110,
+                marginTop: 10,
+                borderRadius: 10,
             }}
         >
             <Text
                 style={{
                     fontSize: 17,
-                    paddingHorizontal: 10,
-                    color: 'white'
+                    color: 'white',
+                    
                 }}
-            >Register</Text>
+            >
+                Register
+            </Text>
         </TouchableOpacity>
         <View style={{
             flex: 25,
