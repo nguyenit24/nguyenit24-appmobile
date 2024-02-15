@@ -23,12 +23,13 @@ const FoodItem = (props) => {
             return 'red';
     }
     function itempress(){
-        alert(name)
+        Alert.alert( 'Bạn có muốn chọn' ,`Tên món: ${name}\nGiá: ${price}$`)
     }
     let { name, url, status, price, website, socialNetworks } = props.food
     return <TouchableOpacity
         onPress={()=>itempress()}
         style={{
+            borderBottomWidth: 1,
             height: 150,
             flexDirection: 'row',
             // backgroundColor: 'purple'
@@ -54,9 +55,11 @@ const FoodItem = (props) => {
         <View style={{
             flex: 1,
             // backgroundColor: 'purple',
-            padding: 15,
+            padding: 10,
         }}>
-            <Text>{name}</Text>
+            <Text style={{
+                fontWeight: 'bold'
+            }}>{name}</Text>
             <View style={{ height: 1, borderWidth: 1 }} />
             <View style={{
                 flexDirection: 'row',
